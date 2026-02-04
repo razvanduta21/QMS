@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .qms-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 font-semibold text-white transition hover:bg-blue-700;
+  }
+
+  .qms-btn-primary:focus-visible {
+    @apply outline-none ring-2 ring-blue-200;
+  }
+
+  .qms-pill {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#dbe4f6] bg-transparent px-3 py-1.5 text-[11px] font-semibold text-slate-600 transition;
+  }
+
+  .qms-pill:hover {
+    @apply bg-slate-100;
+  }
+
+  .qms-pill:focus-visible {
+    @apply outline-none ring-2 ring-blue-200;
+  }
+
+  .qms-btn-cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white transition hover:bg-blue-700;
+    @apply shadow-none;
+    height: 44px;
+  }
+
+  .qms-btn-cta:focus-visible {
+    @apply outline-none ring-2 ring-blue-200;
+  }
+
+  .qms-surface {
+    @apply bg-white border border-slate-200 rounded-[24px] shadow-sm;
+  }
+}
+
+/* Force wallet-adapter buttons to match QMS primary style */
+.wallet-adapter-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 6px 12px;
+  min-height: 36px;
+  height: auto;
+  line-height: 1;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  box-shadow: none;
+}
+
+.wallet-adapter-button.qms-pill {
+  background-color: transparent;
+  color: #3b4a6b;
+  border-radius: 9999px;
+  border: 1px solid #dbe4f6;
+  padding: 6px 12px;
+  font-size: 11px;
+}
+
+.wallet-adapter-button.qms-pill:hover {
+  background-color: #f1f5f9;
+}
+
+.wallet-adapter-button-trigger {
+  background-color: #2563eb;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: #1d4ed8;
+}
+
+.wallet-adapter-button:disabled {
+  opacity: 0.7;
+}
+
+.wallet-adapter-button-trigger .wallet-adapter-button-start-icon {
+  display: none;
+}
+
+.qms-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #bfdbfe #ffffff;
+}
+
+.qms-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.qms-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 0;
+}
+
+.qms-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #bfdbfe;
+  border-radius: 0;
+  border: 1px solid #ffffff;
+}
+
+.qms-wallet-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+:root {
+  color-scheme: dark;
+  --qms-glow: 27, 214, 180;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, rgba(27, 214, 180, 0.18), transparent 45%),
+    radial-gradient(circle at bottom, rgba(255, 107, 95, 0.12), transparent 48%),
+    #0b101a;
+  color: #f6f7fb;
+  font-family: 'Sora', system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.qms-glow {
+  box-shadow: 0 0 36px rgba(var(--qms-glow), 0.25);
+}
+
+.glass-panel {
+  background: rgba(25, 33, 50, 0.75);
+  border: 1px solid rgba(154, 163, 178, 0.18);
+  backdrop-filter: blur(16px);
+}
+
+.page-grid {
+  background-image: radial-gradient(circle at 20% 20%, rgba(27, 214, 180, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 95, 0.12), transparent 40%);
+}
+
+.qms-light {
+  color-scheme: light;
+  --qms-blue: #1d45d8;
+  --qms-blue-700: #1339b7;
+  --qms-blue-50: #eef3ff;
+  --qms-border: #e2e8f4;
+  --qms-bg: #f6f8fc;
+  --qms-text: #1f2a44;
+}
+
+.qms-shell {
+  background: #ffffff;
+  border: 1px solid var(--qms-border);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+}
+
+.qms-card {
+  background: #ffffff;
+  border: 1px solid var(--qms-border);
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(30, 41, 59, 0.08);
+}
+
+.qms-step {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #dbe4f6;
+}
+
+.qms-step::after {
+  display: none;
+}
+
+.qms-step-active {
+  background: var(--qms-blue);
+  color: #ffffff;
+  border-color: var(--qms-blue);
+}
+
+.qms-step-active::after {
+  display: none;
+}
+
+.qms-step-inactive {
+  background: transparent;
+  color: #3b4a6b;
+  border-color: #dbe4f6;
+}
+
+.qms-step-last::after {
+  display: none;
+}
+
+.qms-step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+}
+
+.qms-step-inactive .qms-step-index {
+  background: #ffffff;
+  color: var(--qms-blue);
+}

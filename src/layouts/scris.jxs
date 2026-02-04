@@ -1,0 +1,10 @@
+<AppLayout> 
+├─ <Navbar > 
+│     
+└─<CreateCoinOverlay> 
+    └─ <NavbarContainers>
+    └─ <CreateCoinTitile>
+  
+    └─ <CreateCoinContainer>
+        ├─ <ContainerHeader /> ← FIX 
+        └─ <ContainerBody /> - Dinamic

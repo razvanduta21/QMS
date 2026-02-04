@@ -1,0 +1,156 @@
+{
+  "version": "0.1.0",
+  "name": "qms_mint",
+  "metadata": {
+    "address": "ATGum78vwJBzsnJ6hk8kN8QjEhfoRjT1EFLx3S5K2pJ4"
+  },
+  "instructions": [
+    {
+      "name": "initializeConfig",
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": true, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "treasury", "type": "publicKey" },
+        { "name": "feeLamports", "type": "u64" }
+      ]
+    },
+    {
+      "name": "updateConfig",
+      "accounts": [
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": true, "isSigner": false }
+      ],
+      "args": [
+        { "name": "newTreasury", "type": "publicKey" },
+        { "name": "newFeeLamports", "type": "u64" }
+      ]
+    },
+    {
+      "name": "mintToken",
+      "accounts": [
+        { "name": "payer", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": false, "isSigner": false },
+        { "name": "treasury", "isMut": true, "isSigner": false },
+        { "name": "mint", "isMut": true, "isSigner": true },
+        { "name": "programAuthority", "isMut": false, "isSigner": false },
+        { "name": "destinationOwner", "isMut": false, "isSigner": false },
+        { "name": "destinationAta", "isMut": true, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "associatedTokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "args", "type": { "defined": "MintTokenArgs" } }
+      ]
+    },
+    {
+      "name": "mintTokenWithMetadata",
+      "accounts": [
+        { "name": "payer", "isMut": true, "isSigner": true },
+        { "name": "config", "isMut": false, "isSigner": false },
+        { "name": "treasury", "isMut": true, "isSigner": false },
+        { "name": "mint", "isMut": true, "isSigner": true },
+        { "name": "programAuthority", "isMut": false, "isSigner": false },
+        { "name": "destinationOwner", "isMut": false, "isSigner": false },
+        { "name": "destinationAta", "isMut": true, "isSigner": false },
+        { "name": "metadataPda", "isMut": true, "isSigner": false },
+        { "name": "updateAuthority", "isMut": false, "isSigner": false },
+        { "name": "tokenMetadataProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "associatedTokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "args", "type": { "defined": "MintTokenArgs" } },
+        { "name": "metaArgs", "type": { "defined": "MetadataArgs" } }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "admin", "type": "publicKey" },
+          { "name": "treasury", "type": "publicKey" },
+          { "name": "feeLamports", "type": "u64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "MintTokenArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "decimals", "type": "u8" },
+          { "name": "initialSupply", "type": "u64" },
+          { "name": "mintTo", "type": "publicKey" },
+          { "name": "finalMintAuthority", "type": { "option": "publicKey" } },
+          { "name": "finalFreezeAuthority", "type": { "option": "publicKey" } },
+          { "name": "clientRef", "type": { "option": { "array": ["u8", 16] } } }
+        ]
+      }
+    },
+    {
+      "name": "MetadataArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "name", "type": "string" },
+          { "name": "symbol", "type": "string" },
+          { "name": "uri", "type": "string" },
+          { "name": "sellerFeeBasisPoints", "type": "u16" },
+          { "name": "isMutable", "type": "bool" },
+          { "name": "updateAuthority", "type": "publicKey" }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "MintCreated",
+      "fields": [
+        { "name": "payer", "type": "publicKey", "index": false },
+        { "name": "mint", "type": "publicKey", "index": false },
+        { "name": "destinationOwner", "type": "publicKey", "index": false },
+        { "name": "destinationAta", "type": "publicKey", "index": false },
+        { "name": "decimals", "type": "u8", "index": false },
+        { "name": "initialSupply", "type": "u64", "index": false },
+        { "name": "feeLamports", "type": "u64", "index": false },
+        { "name": "treasury", "type": "publicKey", "index": false },
+        { "name": "finalMintAuthority", "type": { "option": "publicKey" }, "index": false },
+        { "name": "finalFreezeAuthority", "type": { "option": "publicKey" }, "index": false },
+        { "name": "clientRef", "type": { "option": { "array": ["u8", 16] } }, "index": false },
+        { "name": "metadataPda", "type": { "option": "publicKey" }, "index": false },
+        { "name": "metadataUri", "type": { "option": "string" }, "index": false },
+        { "name": "updateAuthority", "type": { "option": "publicKey" }, "index": false }
+      ]
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "InvalidTreasury", "msg": "Invalid treasury account." },
+    { "code": 6001, "name": "InvalidFee", "msg": "Fee must be greater than zero." },
+    { "code": 6002, "name": "InvalidMintToOwner", "msg": "Mint-to owner does not match provided mint_to." },
+    { "code": 6003, "name": "InvalidATA", "msg": "Invalid associated token account address." },
+    { "code": 6004, "name": "InvalidSupply", "msg": "Initial supply must be greater than zero." },
+    { "code": 6005, "name": "InvalidDecimals", "msg": "Decimals must be between 0 and 9." },
+    { "code": 6006, "name": "InsufficientFunds", "msg": "Insufficient funds to cover fee and rent." },
+    { "code": 6007, "name": "Unauthorized", "msg": "Unauthorized admin." },
+    { "code": 6008, "name": "MathOverflow", "msg": "Math overflow." },
+    { "code": 6009, "name": "PdaDerivationError", "msg": "PDA derivation failed." },
+    { "code": 6010, "name": "InvalidMetadataPda", "msg": "Invalid metadata PDA." },
+    { "code": 6011, "name": "InvalidMetadataUri", "msg": "Invalid metadata URI." },
+    { "code": 6012, "name": "InvalidMetadataName", "msg": "Metadata name too long." },
+    { "code": 6013, "name": "InvalidMetadataSymbol", "msg": "Metadata symbol too long." },
+    { "code": 6014, "name": "InvalidUpdateAuthority", "msg": "Update authority account mismatch." }
+  ]
+}
