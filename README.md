@@ -1,4 +1,4 @@
-# QMS Quick Mining Solana
+# QMS Quick Mint Solana
 
 Official domain: https://mintqms.xyz  
 CDN domain: https://cdn.mintqms.xyz

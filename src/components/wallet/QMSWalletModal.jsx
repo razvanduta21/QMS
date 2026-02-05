@@ -9,6 +9,12 @@ const WALLET_ICON_BG = {
   Ledger: 'bg-blue-900'
 };
 
+const isMobileDevice = () => {
+  if (typeof navigator === 'undefined') return false;
+  if (navigator.userAgentData?.mobile) return true;
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+};
+
 function WalletRow({ wallet, onSelect }) {
   const isInstalled = wallet.readyState === WalletReadyState.Installed;
   const isWalletConnect = wallet.adapter?.name === 'WalletConnect';
@@ -45,6 +51,11 @@ export default function QMSWalletModal() {
   const { visible, setVisible } = useWalletModal();
   const [portal, setPortal] = useState(null);
   const containerRef = useRef(null);
+  const isMobile = isMobileDevice();
+  const deepLinkTarget = useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    return encodeURIComponent(window.location.href);
+  }, []);
 
   const orderedWallets = useMemo(() => {
     const installed = [];
@@ -111,6 +122,33 @@ export default function QMSWalletModal() {
             x
           </button>
         </div>
+
+        {isMobile ? (
+          <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50/50 p-4">
+            <div className="text-xs font-semibold text-blue-700">
+              Open in your wallet app
+            </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              <a
+                href={`https://phantom.app/ul/browse/${deepLinkTarget}`}
+                className="flex items-center justify-center rounded-xl border border-blue-200 bg-white px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-50"
+                onClick={() => setVisible(false)}
+              >
+                Open Phantom
+              </a>
+              <a
+                href={`https://solflare.com/ul/browse/${deepLinkTarget}`}
+                className="flex items-center justify-center rounded-xl border border-blue-200 bg-white px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-50"
+                onClick={() => setVisible(false)}
+              >
+                Open Solflare
+              </a>
+            </div>
+            <div className="mt-2 text-[11px] text-slate-500">
+              If you use another wallet, open this site inside its in-app browser.
+            </div>
+          </div>
+        ) : null}
 
         <div className="qms-scrollbar mt-4 max-h-80 space-y-3 overflow-y-auto">
           {orderedWallets.map((wallet, index) => (

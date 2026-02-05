@@ -505,16 +505,16 @@ export default function MintPage() {
   return (
     <div className="mx-auto max-w-[1360px] py-10">
       {/* Stepper + Page Title */}
-      <section className="qms-surface px-10 py-5">
+      <section className="qms-surface px-6 py-4 md:px-10 md:py-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-600">
             Create a Coin
           </p>
         </div>
-        <h2 className="mt-2 text-xl font-semibold text-slate-900">
+        <h2 className="mt-2 text-lg md:text-xl font-semibold text-slate-900">
           Create a Coin
         </h2>
-        <div className="mt-3">
+        <div className="mt-2 md:mt-3">
           <Stepper
             currentStep={mintStep}
             connected={connected}
@@ -530,8 +530,8 @@ export default function MintPage() {
           <div className="grid gap-8 lg:grid-cols-12">
             <section className="min-h-[500px] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col lg:col-span-8">
             {connected ? (
-              <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                <div className="text-sm font-semibold text-slate-700">
+              <div className="mb-3 flex flex-col gap-2 md:mb-5 md:flex-row md:items-center md:justify-between">
+                <div className="text-xs md:text-sm font-semibold text-slate-700">
                   Wallet balance{" "}
                   {balanceLoading
                     ? "..."
@@ -542,7 +542,7 @@ export default function MintPage() {
                         })} SOL`
                       : "--"}
                 </div>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                <div className="flex flex-col items-start gap-1 text-[11px] text-slate-500 md:flex-row md:items-center md:gap-2 md:text-xs">
                   <span>Wallet connected • {networkShortLabel}</span>
                   <span className="font-semibold text-slate-900">
                     {shortAddress}
@@ -550,7 +550,7 @@ export default function MintPage() {
                   <button
                     type="button"
                     onClick={disconnect}
-                    className="rounded-lg border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600"
+                    className="rounded-lg border border-slate-200 px-3 py-1 text-[11px] font-semibold text-slate-600 md:text-xs"
                   >
                     Disconnect
                   </button>

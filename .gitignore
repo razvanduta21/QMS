@@ -3,5 +3,7 @@ dist/
 .env
 .env.production
 server/.env
+server/worker/node_modules/
+server/worker/.wrangler/
 target/
 .DS_Store

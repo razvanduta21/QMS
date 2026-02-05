@@ -139,21 +139,21 @@ export default function SFPPanel() {
   };
 
   return (
-    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-slate-900">
+    <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 md:p-6 shadow-sm">
+      <h3 className="text-base md:text-lg font-semibold text-slate-900">
         System Funders Points
       </h3>
-      <p className="mt-2 text-sm text-slate-500">
+      <p className="mt-2 text-xs md:text-sm text-slate-500">
         Be a part of our project. Support QMS and unlock voting access at 10,000
         SFP.
       </p>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      <div className="mt-4 md:mt-5 grid gap-2 md:gap-3 sm:grid-cols-2">
         <div className="relative" ref={wrapperRef}>
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-none transition hover:bg-blue-700 animate-pulse"
+            className="w-full rounded-xl bg-blue-600 px-4 py-2.5 md:py-3 text-sm font-semibold text-white shadow-none transition hover:bg-blue-700 animate-pulse"
           >
             {isSending ? 'Sending...' : 'Donate'}
           </button>
@@ -217,29 +217,29 @@ export default function SFPPanel() {
         </div>
         <NavLink
           to="/dashboard/sfp/submit-referral"
-          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 md:py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
         >
           Create a referral
         </NavLink>
         <NavLink
           to="/dashboard/sfp/submit-video"
-          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 md:py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
         >
           Submit video
         </NavLink>
         <NavLink
           to="/dashboard/sfp/submit-social"
-          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+          className="flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 md:py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
         >
           Submit post
         </NavLink>
       </div>
 
-      <div className="mt-6 border-t border-slate-200 pt-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+      <div className="mt-4 md:mt-6 border-t border-slate-200 pt-4 md:pt-5">
+        <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
           Get SOL for DevNet/TestNet
         </p>
-        <div className="mt-3 grid gap-3">
+        <div className="mt-3 grid gap-2 md:gap-3">
           <input
             value={airdropAddress}
             onChange={(event) => setAirdropAddress(event.target.value)}

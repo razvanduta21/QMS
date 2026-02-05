@@ -1,5 +1,5 @@
 export const appConfig = {
-  name: import.meta.env.VITE_APP_NAME || 'QMS Quick Mining Solana',
+  name: import.meta.env.VITE_APP_NAME || 'QMS Quick Mint Solana',
   env: import.meta.env.VITE_ENV || 'development',
   isProd: import.meta.env.VITE_ENV === 'production'
 };

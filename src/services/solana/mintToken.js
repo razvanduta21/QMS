@@ -67,6 +67,11 @@ const dataUrlToBlob = (dataUrl) => {
 const META_API_BASE = import.meta.env.VITE_META_API_BASE || '';
 
 const requestPresign = async ({ mint, kind, contentType, contentLength }) => {
+  if (!META_API_BASE) {
+    throw new Error(
+      'Metadata upload server not configured. Set VITE_META_API_BASE or switch to Off-chain metadata.'
+    );
+  }
   const base = META_API_BASE.replace(/\/$/, '');
   const response = await fetch(`${base}/api/meta/presign`, {
     method: 'POST',
