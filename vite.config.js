@@ -23,6 +23,19 @@ export default defineConfig({
   optimizeDeps: {
     include: ['buffer', 'process']
   },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (
+          warning?.message?.includes('contains an annotation') &&
+          warning.message.includes('PURE')
+        ) {
+          return;
+        }
+        warn(warning);
+      }
+    }
+  },
   server: {
     port: 5173,
     open: false,

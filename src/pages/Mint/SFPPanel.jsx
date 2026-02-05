@@ -205,7 +205,7 @@ export default function SFPPanel() {
               ) : null}
               {success ? (
                 <div className="mt-3 flex items-center gap-3 rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2 text-[11px] text-emerald-700">
-                  <img src="/logos/logoQMS.png" alt="QMS" className="h-6 w-6" />
+                  <img src="/logos/applogoQMS.png" alt="QMS" className="h-6 w-6" />
                   <div>
                     <div className="font-semibold">{success}</div>
                     <div>Mulțumesc! Nu o să vă dezamăgim!</div>
