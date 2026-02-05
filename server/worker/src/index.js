@@ -137,7 +137,8 @@ export default {
           method: 'PUT',
           headers: {
             'content-type': contentType
-          }
+          },
+          signQuery: true
         });
 
         const publicUrl = resolvePublicUrl(env, key);
