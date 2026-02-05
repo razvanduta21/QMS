@@ -28,7 +28,7 @@ export default function DashboardTopbar() {
       <div className="h-full px-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <NavLink to="/" className="flex items-center gap-3">
-            <img src="/logos/applogoQMS.png" alt="QMS" className="h-9 md:h-10" />
+            <img src="/logos/logoQMS.png" alt="QMS" className="h-9 md:h-10" />
           </NavLink>
           <div className="relative" ref={wrapperRef}>
             <button
