@@ -178,15 +178,21 @@ export default {
         const response = await fetch(
           `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
             ids
-          )}&vs_currencies=usd`
+          )}&vs_currencies=usd`,
+          {
+            headers: {
+              accept: 'application/json',
+              'user-agent': 'QMS/1.0'
+            }
+          }
         );
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-          return json({ error: 'Price lookup failed.' }, 502, { origin });
+          return json({}, 200, { origin });
         }
         return json(data, 200, { origin });
       } catch (err) {
-        return json({ error: err?.message || 'Price lookup failed.' }, 500, { origin });
+        return json({}, 200, { origin });
       }
     }
 
