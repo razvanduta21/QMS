@@ -62,6 +62,14 @@ export default function DashboardTopbar() {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="https://t.me/+pncK6ZhQNL5hODY0"
+            target="_blank"
+            rel="noreferrer"
+            className="qms-pill"
+          >
+            Telegram
+          </a>
           <ConnectWalletButton />
           {connected ? <SelectNetworkButton /> : null}
         </div>
