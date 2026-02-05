@@ -75,7 +75,11 @@ const requestAirdrop = async (endpoint, address) => {
   });
   const data = await response.json();
   if (!response.ok || data?.error) {
-    throw new Error(data?.error?.message || 'Airdrop failed.');
+    const message =
+      data?.error?.message ||
+      data?.error?.data?.logs?.join(' ') ||
+      `RPC error ${response.status}`;
+    throw new Error(message);
   }
   return data.result;
 };
@@ -162,6 +166,27 @@ export default {
         return json({ signature }, 200, { origin });
       } catch (err) {
         return json({ error: err?.message || 'Airdrop failed.' }, 500, { origin });
+      }
+    }
+
+    if (url.pathname === '/api/prices' && request.method === 'GET') {
+      try {
+        const ids = url.searchParams.get('ids');
+        if (!ids) {
+          return json({ error: 'Missing ids.' }, 400, { origin });
+        }
+        const response = await fetch(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
+            ids
+          )}&vs_currencies=usd`
+        );
+        const data = await response.json();
+        if (!response.ok) {
+          return json({ error: 'Price lookup failed.' }, 502, { origin });
+        }
+        return json(data, 200, { origin });
+      } catch (err) {
+        return json({ error: err?.message || 'Price lookup failed.' }, 500, { origin });
       }
     }
 

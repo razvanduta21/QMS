@@ -73,12 +73,18 @@ const fetchPrices = async (ids) => {
     return priceCache.data;
   }
 
-  const response = await fetch(
-    `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
-      unique.join(',')
-    )}&vs_currencies=usd`
-  );
+  const baseApi = (import.meta.env.VITE_META_API_BASE || '').replace(/\/$/, '');
+  const endpoint = baseApi
+    ? `${baseApi}/api/prices?ids=${encodeURIComponent(unique.join(','))}`
+    : `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(
+        unique.join(',')
+      )}&vs_currencies=usd`;
+
+  const response = await fetch(endpoint);
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.error || 'Unable to load prices');
+  }
   priceCache = { ids: cacheKey, fetchedAt: now, data };
   return data;
 };
